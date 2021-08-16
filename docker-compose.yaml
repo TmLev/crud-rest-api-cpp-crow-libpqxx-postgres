@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    env_file:
+      - .env
+    ports:
+      - $POSTGRES_PORT:5432
+    restart: unless-stopped
+
+  rest-api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    env_file:
+      - .env
+    ports:
+      - $REST_API_PORT:$REST_API_PORT
+    command: /bin/bash
+    restart: unless-stopped
+    volumes:
+      - ./:/rest-api
+    depends_on:
+      - postgres
+    stdin_open: true
+    tty: true
