@@ -1,0 +1,6 @@
+[submodule "dependencies/crow"]
+	path = dependencies/crow
+	url = https://github.com/crowcpp/crow.git
+[submodule "dependencies/libpqxx"]
+	path = dependencies/libpqxx
+	url = https://github.com/jtv/libpqxx.git
