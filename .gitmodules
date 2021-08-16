@@ -4,3 +4,6 @@
 [submodule "dependencies/libpqxx"]
 	path = dependencies/libpqxx
 	url = https://github.com/jtv/libpqxx.git
+[submodule "dependencies/expected"]
+	path = dependencies/expected
+	url = https://github.com/TartanLlama/expected.git
