@@ -2,9 +2,9 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if (NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-  message(STATUS "Setting build type to 'RelWithDebInfo' as none was specified.")
+  message(STATUS "Setting build type to 'Debug' as none was specified.")
   set(CMAKE_BUILD_TYPE
-      RelWithDebInfo
+      Debug
       CACHE STRING "Choose the type of build." FORCE)
 
   # Set the possible values of build type for cmake-gui, ccmake
