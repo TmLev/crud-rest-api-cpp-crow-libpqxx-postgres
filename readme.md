@@ -10,5 +10,6 @@ Current status:
 - [x] Destroy
 
 TODO:
+- [ ] Make `PgRepo` thread-safe (right now it is **NOT**).
 - [ ] Bump `libpqxx` when https://github.com/jtv/libpqxx/pull/476 will be merged.
 - [ ] Compile & run in Docker.
