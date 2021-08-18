@@ -5,8 +5,6 @@ services:
     image: postgres:13-alpine
     env_file:
       - .env
-    ports:
-      - $POSTGRES_PORT:5432
     restart: unless-stopped
 
   rest-api:
@@ -17,11 +15,6 @@ services:
       - .env
     ports:
       - $REST_API_PORT:$REST_API_PORT
-    command: /bin/bash
     restart: unless-stopped
-    volumes:
-      - ./:/rest-api
     depends_on:
       - postgres
-    stdin_open: true
-    tty: true
