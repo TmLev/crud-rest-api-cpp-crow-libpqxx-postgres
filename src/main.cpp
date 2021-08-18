@@ -1,12 +1,22 @@
 #define CROW_MAIN
 
-#include <crow.h>
-#include <signal.h>
-
-#include <cstdlib>
+#include <crow/app.h>
+#include <crow/json.h>
+#include <crow/routing.h>
 
 #include "repo.hpp"
+#include "types.hpp"
 #include "wheels.hpp"
+
+#include <cstdlib>   // std::getenv
+#include <signal.h>  // signal
+#include <string>    // std::stoi
+
+auto GetPortFromEnv() -> u16 {
+  const auto raw = String{std::getenv("REST_API_PORT")};
+  assert(raw.size() >= 4);  // At least greater than 1000.
+  return static_cast<u16>(std::stoi(raw));
+}
 
 auto main() -> int {
   // Initialize Postgres repo.
@@ -43,6 +53,7 @@ auto main() -> int {
 
             return crow::json::wvalue(serialized);
           }
+
           case crow::HTTPMethod::POST: {
             const auto json = crow::json::load(request.body);
             const auto result = repo.CreateArtist(NewArtist::From(json));
@@ -54,6 +65,7 @@ auto main() -> int {
 
             return artist.IntoJson();
           }
+
           default: {
             UNREACHABLE();
           }
@@ -75,9 +87,11 @@ auto main() -> int {
 
             return artist.IntoJson();
           }
+
           case crow::HTTPMethod::PATCH: {
             const auto json = crow::json::load(request.body);
-            const auto result = repo.UpdateArtist(id, UpdatedArtist::From(json));
+            const auto result =
+                repo.UpdateArtist(id, UpdatedArtist::From(json));
             if (!result.has_value()) {
               return result.error().IntoJson();
             }
@@ -86,6 +100,7 @@ auto main() -> int {
 
             return artist.IntoJson();
           }
+
           case crow::HTTPMethod::DELETE: {
             const auto result = repo.DestroyArtist(id);
             if (!result.has_value()) {
@@ -96,6 +111,7 @@ auto main() -> int {
 
             return artist.IntoJson();
           }
+
           default: {
             UNREACHABLE();
           }
@@ -104,7 +120,9 @@ auto main() -> int {
 
   // Run.
 
-  app.port(18080).run();
+  app.port(GetPortFromEnv()).run();
+
+  // Exit.
 
   return EXIT_SUCCESS;
 }
