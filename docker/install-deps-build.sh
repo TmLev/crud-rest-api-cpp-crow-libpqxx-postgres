@@ -15,7 +15,7 @@ apt-get install -y \
 
 # Make LLVM repos visible for `apt`.
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-add-apt-repository -s "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-12 main"
+add-apt-repository -s "deb https://apt.llvm.org/focal/ llvm-toolchain-focal-12 main"
 
 # Make CMake repos visible for `apt`.
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | gpg --dearmor - | tee /usr/share/keyrings/kitware-archive-keyring.gpg
@@ -23,7 +23,7 @@ echo "deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://ap
 
 # Make Postgres repos visible for `apt`.
 wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
-echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
+echo "deb https://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list
 
 # Update system once again.
 apt-get update
@@ -64,4 +64,4 @@ apt-get install -y \
 
 # `libpqxx` dependencies.
 apt-get install -y \
-  postgresql-client-13
+  postgresql-13
