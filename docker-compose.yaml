@@ -15,6 +15,11 @@ services:
       - .env
     ports:
       - $REST_API_PORT:$REST_API_PORT
+    volumes:
+      - ./tools:/tools:ro
+    command: >
+      sh -c "/tools/wait-for-it/wait-for-it.sh $POSTGRES_HOST:$POSTGRES_PORT -t 0 &&
+             ./rest-api"
     restart: unless-stopped
     depends_on:
       - postgres
