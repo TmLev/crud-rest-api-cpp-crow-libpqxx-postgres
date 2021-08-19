@@ -7,3 +7,6 @@
 [submodule "dependencies/expected"]
 	path = dependencies/expected
 	url = https://github.com/TartanLlama/expected.git
+[submodule "tools/wait-for-it"]
+	path = tools/wait-for-it
+	url = https://github.com/vishnubob/wait-for-it.git
