@@ -1,7 +1,12 @@
 # ------------------------------------------------------------------------------
-# Crow
+# Threads
 
 find_package(Threads)
+set(THREADS_LINK_TARGET ${CMAKE_THREAD_LIBS_INIT} PARENT_SCOPE)
+
+# ------------------------------------------------------------------------------
+# Crow
+
 find_package(ZLIB)
 
 find_package(

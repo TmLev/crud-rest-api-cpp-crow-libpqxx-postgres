@@ -10,6 +10,7 @@ enable_compiler_warnings(rest-api)
 # Link dependencies.
 target_link_libraries(
   rest-api
+  PRIVATE ${THREADS_LINK_TARGET}
   PRIVATE expected
   PRIVATE pqxx)
 

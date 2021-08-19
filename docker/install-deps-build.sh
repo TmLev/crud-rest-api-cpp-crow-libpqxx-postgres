@@ -64,4 +64,6 @@ apt-get install -y \
 
 # `libpqxx` dependencies.
 apt-get install -y \
-  postgresql-13
+  postgresql-13 \
+  libpq-dev \
+  postgresql-server-dev-all
